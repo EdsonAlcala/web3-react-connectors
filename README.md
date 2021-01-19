@@ -1,6 +1,6 @@
-# `web3-react-connectors`
+# `web3-react-wallet`
 
-This is a fork of the web3-react project that only contains the following connectors:
+This is a fork of the web3-react project with wallet integrated and only contains the following connectors:
 
 - Ledger Connector
 
@@ -24,8 +24,8 @@ This is a fork of the web3-react project that only contains the following connec
 | _Hardware_                            |
 | `@web3-react/ledger-connector`        | [![npm version](https://img.shields.io/npm/v/@web3-react/ledger-connector/latest.svg)](https://www.npmjs.com/package/@web3-react/ledger-connector/v/latest)               | [![minzip](https://img.shields.io/bundlephobia/minzip/@web3-react/ledger-connector/latest.svg)](https://bundlephobia.com/result?p=@web3-react/ledger-connector@latest)               | [Ledger](https://www.ledger.com/) Connector                                         |
 | 🐉 **Low-Level**                      |
-| `@web3-react/abstract-connector`      | [![npm version](https://img.shields.io/npm/v/@web3-react/abstract-connector/latest.svg)](https://www.npmjs.com/package/@web3-react/abstract-connector/v/latest)           | [![minzip](https://img.shields.io/bundlephobia/minzip/@web3-react/abstract-connector/latest.svg)](https://bundlephobia.com/result?p=@web3-react/abstract-connector@latest)           | Shared Connector Class                                                              |
-| `@web3-react/types`                   | [![npm version](https://img.shields.io/npm/v/@web3-react/types/latest.svg)](https://www.npmjs.com/package/@web3-react/types/v/latest)                                     | [![minzip](https://img.shields.io/bundlephobia/minzip/@web3-react/types/latest.svg)](https://bundlephobia.com/result?p=@web3-react/types@latest)                                     | Shared [TypeScript](https://www.typescriptlang.org/) Types                          |
+| `@web3-react-wallet/abstract-connector`      | [![npm version](https://img.shields.io/npm/v/@web3-react/abstract-connector/latest.svg)](https://www.npmjs.com/package/@web3-react/abstract-connector/v/latest)           | [![minzip](https://img.shields.io/bundlephobia/minzip/@web3-react/abstract-connector/latest.svg)](https://bundlephobia.com/result?p=@web3-react/abstract-connector@latest)           | Shared Connector Class                                                              |
+| `@web3-react-wallet/types`                   | [![npm version](https://img.shields.io/npm/v/@web3-react/types/latest.svg)](https://www.npmjs.com/package/@web3-react/types/v/latest)                                     | [![minzip](https://img.shields.io/bundlephobia/minzip/@web3-react/types/latest.svg)](https://bundlephobia.com/result?p=@web3-react/types@latest)                                     | Shared [TypeScript](https://www.typescriptlang.org/) Types                          |
 
 ## Local Development
 
