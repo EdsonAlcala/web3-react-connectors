@@ -77,8 +77,7 @@ workflows:
             - bootstrap
       - build:
           requires:
-            - lint
-            - test
+            - bootstrap
       - publish:
           context: Packages
           requires:
