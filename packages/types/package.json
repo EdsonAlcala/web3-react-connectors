@@ -1,5 +1,5 @@
 {
-  "name": "@web3-react-wallet/types",
+  "name": "@web3-react-connectors/types",
   "publishConfig": {
     "access": "public"
   },
