@@ -8,6 +8,18 @@ aliases:
     node/install-packages:
       pkg-manager: yarn
 
+aliases:
+  - &bootstrap
+    run:
+      name: Bootstrap
+      command: yarn bootstrap
+
+aliases:
+  - &build
+    run:
+      name: Build
+      command: yarn build
+
 version: 2.1
 
 orbs:
@@ -19,9 +31,6 @@ jobs:
     steps:
       - checkout
       - *install_packages
-      - run:
-          name: Bootstrap
-          command: yarn bootstrap
 
   lint: 
     <<: *defaults
@@ -46,21 +55,19 @@ jobs:
     steps:
       - checkout
       - *install_packages
-      - run:
-          name: Build
-          command: yarn build
+      - *bootstrap
+      - *build
 
   publish:
     <<: *defaults
     steps:
       - checkout
       - *install_packages
+      - *bootstrap
+      - *build
       - run: 
           name: Set NPM token
           command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
-      - run:
-          name: Build
-          command: yarn build
       - run:
           name: Publish all
           command: yarn publish:lerna
