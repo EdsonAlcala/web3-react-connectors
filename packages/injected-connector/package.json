@@ -1,0 +1,43 @@
+{
+  "name": "@web3-react-connectors/injected",
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "1.0.0",
+  "description": "A simple, maximally extensible, dependency minimized framework for building modern Ethereum dApps",
+  "keywords": [
+    "react",
+    "react-hooks",
+    "hooks",
+    "ethereum",
+    "javascript",
+    "typescript",
+    "web3",
+    "context",
+    "frontend",
+    "dapp",
+    "metamask"
+  ],
+  "author": "Edson Alcala <edson_alcala@msn.com>",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:EdsonAlcala/web3-react-connectors.git"
+  },
+  "main": "dist/index.js",
+  "module": "dist/injected-connector.esm.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "lint": "tsdx lint src"
+  },
+  "dependencies": {
+    "@web3-react-connectors/abstract": "^1.0.0",
+    "@web3-react-connectors/types": "^1.0.0",
+    "tiny-warning": "^1.0.3"
+  },
+  "license": "GPL-3.0-or-later"
+}
