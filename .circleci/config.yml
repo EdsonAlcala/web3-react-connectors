@@ -1,101 +1,10 @@
-defaults: &defaults
-  working_directory: ~/web3-react-connectors
-  docker:
-    - image: circleci/node:12.16
+version: 2.1
 
-aliases:
-  - &restore_cache
-    restore_cache:
-      name: Restore Yarn Package Cache
-      keys:
-        - yarn-packages-v1-{{ checksum "yarn.lock" }}
-        - yarn-packages-v1-
-        - yarn-packages-v1-
-
-version: 2.0
-
-jobs:
-  setup:
-    <<: *defaults
-    steps:
-      - checkout
-      - *restore_cache
-      - run:
-          name: Install Dependencies
-          command: |
-            echo 'Installing dependencies'
-            yarn --frozen-lockfile
-      - save_cache: 
-          name: Save Yarn Package Cache
-          paths:
-            - node_modules
-          key: yarn-packages-v1-{{ checksum "yarn.lock" }}
-  
-  lint-and-format: 
-    <<: *defaults
-    steps:
-      - checkout
-      - *restore_cache
-      - run:
-          name: Lint
-          command: yarn lint
-  
-  tests:
-    <<: *defaults
-    steps:
-      - checkout
-      - *restore_cache
-      - run:
-          name: Run unit tests with JUnit as reporter
-          command: yarn test
-          environment:
-            JEST_JUNIT_OUTPUT: "reports/junit/js-test-results.xml"
-      - store_test_results:
-          path: reports/junit
-      - store_artifacts:
-          path: reports/junit
-
-  build: 
-    <<: *defaults
-    steps:
-      - checkout
-      - *restore_cache
-      - run:
-          name: Build
-          command: yarn compile
-
-  publish: 
-    <<: *defaults
-    steps:
-      - checkout
-      - *restore_cache
-      - run: 
-          name: Compile all
-          command: yarn compile
-      - run: 
-          name: Set NPM token
-          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
-      - run:
-          name: Publish all
-          command: yarn publish
+orbs:
+  node: circleci/node@4.1.0
 
 workflows:
-  version: 2
-  build-deploy:
+  ci:
     jobs:
-      - setup
-      - lint-and-format:
-          requires:
-            - setup
-      - tests:
-          requires:
-            - setup
-      - build:
-          requires:
-            - tests
-      - publish:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
+      - node/install-packages
+      - node/test
