@@ -1,0 +1,88 @@
+defaults: &defaults
+  executor:
+    name: node/default
+    tag: '12.18.3'
+
+aliases:
+  - &install_packages
+    node/install-packages:
+      pkg-manager: yarn
+
+version: 2.1
+
+orbs:
+  node: circleci/node@4.1.0
+
+jobs:
+  bootstrap:
+    <<: *defaults
+    steps:
+      - checkout
+      - *install_packages
+      - run:
+          name: Bootstrap
+          command: yarn bootstrap
+
+  lint: 
+    <<: *defaults
+    steps:
+      - checkout
+      - *install_packages
+      - run:
+          name: Lint
+          command: yarn lint
+  
+  test:
+    <<: *defaults
+    steps:
+      - checkout
+      - *install_packages
+      - run:
+          name: Test
+          command: yarn test
+
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+      - *install_packages
+      - run:
+          name: Build
+          command: yarn build
+
+  publish:
+    <<: *defaults
+    steps:
+      - checkout
+      - *install_packages
+      - run: 
+          name: Set NPM token
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+      - run:
+          name: Build
+          command: yarn build
+      - run:
+          name: Publish all
+          command: yarn publish:lerna
+
+workflows:
+  continuos_integration:
+    jobs:
+      - bootstrap
+      - lint:
+          requires:
+            - bootstrap
+      - test:
+          requires:
+            - bootstrap
+      - build:
+          requires:
+            - lint
+            - test
+      - publish:
+          context: Packages
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
