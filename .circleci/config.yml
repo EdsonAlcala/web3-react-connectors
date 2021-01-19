@@ -8,13 +8,11 @@ aliases:
     node/install-packages:
       pkg-manager: yarn
 
-aliases:
   - &bootstrap
     run:
       name: Bootstrap
       command: yarn bootstrap
 
-aliases:
   - &build
     run:
       name: Build
