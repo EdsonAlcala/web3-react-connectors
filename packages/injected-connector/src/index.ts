@@ -76,11 +76,9 @@ export class InjectedConnector extends AbstractConnector {
     // try to activate + get account via eth_requestAccounts
     let account
     try {
-      account = await (window.ethereum.request as SendOld)({ 
+      account = await (window.ethereum.request as SendOld)({
         method: 'eth_requestAccounts'
-      }).then(
-        sendReturn => parseSendReturn(sendReturn)[0]
-      )
+      }).then(sendReturn => parseSendReturn(sendReturn)[0])
     } catch (error) {
       if ((error as any).code === 4001) {
         throw new UserRejectedRequestError()
@@ -117,9 +115,7 @@ export class InjectedConnector extends AbstractConnector {
 
     if (!chainId) {
       try {
-        chainId = await (window.ethereum.request as SendOld)({
-          method:'net_version'
-        }).then(parseSendReturn)
+        chainId = await (window.ethereum.request as SendOld)({ method: 'net_version' }).then(parseSendReturn)
       } catch {
         warning(false, 'net_version was unsuccessful, falling back to net version v2')
       }
