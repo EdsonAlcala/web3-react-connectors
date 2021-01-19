@@ -27,7 +27,7 @@
   "author": "Edson Alcala <edson_alcala@msn.com>",
   "repository": {
     "type": "git",
-    "url": "git://github.com/NoahZinsmeister/web3-react.git"
+    "url": "git@github.com:EdsonAlcala/web3-react-connectors.git"
   },
   "scripts": {
     "bootstrap": "lerna bootstrap",
